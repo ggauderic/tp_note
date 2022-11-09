@@ -1,0 +1,6 @@
+region="eu-west-1"
+ami_id="ami-02df9ea15c1778c9c"
+instance_type="t2.micro"
+tag_name="esme"
+aws_public_key_ssh_path=<INSERT_YOUR_PUBLIC_KEY_PATH>
+aws_private_key_ssh_path=<INSERT_YOUR_PRIVATE_KEY_PATH>

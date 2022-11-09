@@ -1,0 +1,51 @@
+---
+- hosts: webserver
+  become: true
+  tasks:
+
+## task to copy src directory to server ##
+
+
+## task to copy requirements file to server ##
+
+
+## task to add port 80 and 5000 to iptables ##
+
+
+## task to add a routing rule from 80 to 5000 on iptables ##
+
+
+## task to install python3-pip on server ##
+
+
+## task to pip install requirements ##
+
+
+
+
+  - name: "Install supervisord"
+    become: true
+    apt:
+      name: supervisor
+      state: present
+      update_cache: yes
+
+  - name: "Start supervisord"
+    become: true
+    service:
+      name: "supervisor"
+      state: started
+      enabled: yes
+
+  - name: "Copy supervisord job file to remote"
+    template:
+      src: templates/run_proccess.j2
+      dest: "{{ supervisord_configs_path }}/run_process.conf"
+      owner: root
+
+  - name: "Start {{ program_name }}"
+    supervisorctl:
+      name: "{{ program_name }}"
+      state: restarted
+
+
